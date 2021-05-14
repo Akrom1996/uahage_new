@@ -1,24 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-boldfont(String text, double size, colors) {
-  return Text(text,
-      style: TextStyle(
-          color: colors,
-          fontWeight: FontWeight.w700,
-          fontFamily: "NotoSansCJKkr_Bold",
-          fontStyle: FontStyle.normal,
-          fontSize: size.sp),
-      textAlign: TextAlign.left);
+boldfont(String text, double size, Color colors) {
+  return Text(
+    text,
+    style: TextStyle(
+        color: colors,
+        fontWeight: FontWeight.w700,
+        fontFamily: "NotoSansCJKkr_Bold",
+        fontStyle: FontStyle.normal,
+        fontSize: size.sp),
+    textAlign: TextAlign.left,
+    // overflow: TextOverflow.ellipsis,
+  );
 }
 
 normalfont(String text, double size, colors) {
-  return Text(text,
-      style: TextStyle(
-          color: colors,
-          fontWeight: FontWeight.w500,
-          fontFamily: "NotoSansCJKkr_Medium",
-          fontStyle: FontStyle.normal,
-          fontSize: size.sp),
-      textAlign: TextAlign.left);
+  return Text(
+    text,
+    style: TextStyle(
+        color: colors,
+        fontWeight: FontWeight.w500,
+        fontFamily: "NotoSansCJKkr_Medium",
+        fontStyle: FontStyle.normal,
+        fontSize: size.sp),
+    textAlign: TextAlign.left,
+    // overflow: TextOverflow.ellipsis,
+  );
+}
+
+regularfont(String text, double size, colors) {
+  return Text(
+    text,
+    style: TextStyle(
+        color: colors,
+        fontWeight: FontWeight.w500,
+        fontFamily: "NotoSansCJKkr_Regular",
+        fontStyle: FontStyle.normal,
+        fontSize: size.sp),
+    textAlign: TextAlign.left,
+    // overflow: TextOverflow.ellipsis,
+  );
 }

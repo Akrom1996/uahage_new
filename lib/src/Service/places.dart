@@ -13,7 +13,7 @@ import 'package:uahage/src/Controller/place.controller.dart';
 import 'package:uahage/src/Static/url.dart';
 
 class Place extends GetView<PlaceController> {
-  Future<List<dynamic>> getPlaceList(placeCode) async {
+  Future getPlaceList(placeCode) async {
     String url = URL;
     var pageNumber = controller.placePageNumber();
 

@@ -246,6 +246,7 @@ class _UserModifyState extends State<UserModify> {
                         height: 439.h,
                         width: 439.w,
                         child: CircleAvatar(
+                          radius: 439.w,
                           backgroundImage:
                               AssetImage("./assets/myPage/avatar.png"),
                           child: (() {

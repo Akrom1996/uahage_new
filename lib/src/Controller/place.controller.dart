@@ -6,6 +6,11 @@ class PlaceController extends GetxService {
   RxList place = <dynamic>[].obs;
   RxInt placePageNumber = 0.obs;
   RxInt indexCount = 0.obs;
+  RxInt pageCounter = 1.obs;
+
+  changePageCounter(int index) {
+    pageCounter(index);
+  }
 
   void changeindexCount(int index) {
     indexCount(index);

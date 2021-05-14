@@ -21,7 +21,10 @@ class _NavigationState extends State<Navigation> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Color(0xffd9d4d5), // navigation bar color
+      statusBarColor: Color(0xffd9d4d5), // status bar color
+    ));
     return WillPopScope(
       onWillPop: () {
         if (_selectedTabIndex >= 1) {

@@ -4,21 +4,24 @@ import 'package:get/get.dart';
 import 'package:uahage/src/Static/Font/font.dart';
 
 appBar(context, text) {
-  return AppBar(
-    title: new Text(
-      text,
-      style: TextStyle(
-          fontSize: 62.sp,
-          fontFamily: 'NotoSansCJKkr_Medium',
-          color: Color.fromRGBO(255, 114, 148, 1.0)),
+  return PreferredSize(
+    preferredSize: Size.fromHeight(180.w),
+    child: AppBar(
+      title: new Text(
+        text,
+        style: TextStyle(
+            fontSize: 62.sp,
+            fontFamily: 'NotoSansCJKkr_Medium',
+            color: Color.fromRGBO(255, 114, 148, 1.0)),
+      ),
+      centerTitle: true,
+      backgroundColor: Colors.white,
+      leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Color(0xffff7292)),
+          onPressed: () {
+            Get.back();
+          }),
     ),
-    centerTitle: true,
-    backgroundColor: Colors.white,
-    leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios, color: Color(0xffff7292)),
-        onPressed: () {
-          Get.back();
-        }),
   );
 }
 
