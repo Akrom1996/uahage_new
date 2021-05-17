@@ -12,7 +12,7 @@ class user extends GetView<UserController> {
   String url = URL;
   //ALL SELECT
   select() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     try {
       var response = await http.get(
           url + "/api/users/${controller.userId.value}",
@@ -20,14 +20,16 @@ class user extends GetView<UserController> {
 
       if (jsonDecode(response.body)['message'] == 'finded successfully') {
         var data = jsonDecode(response.body)['data']["result"][0];
-
+        print("data: $data");
         return {
-          "nickname": data["nickname"] == null ? "" : data["nickname"],
+          "nickname": data["nickname"] == "null" ? "" : data["nickname"],
           "baby_birthday":
-              data["baby_birthday"] == null ? "" : data["baby_birthday"],
-          "baby_gender": data["baby_gender"] == null ? "" : data["baby_gender"],
-          "age": data["parent_age"] == null ? "" : data["parent_age"],
-          "profile_url": data["profile_url"] == null ? "" : data["profile_url"],
+              data["baby_birthday"] == "null" ? "" : data["baby_birthday"],
+          "baby_gender":
+              data["baby_gender"] == "null" ? "" : data["baby_gender"],
+          "age": data["parent_age"] == "null" ? "" : data["parent_age"],
+          "profile_url":
+              data["profile_url"] == "null" ? "" : data["profile_url"],
         };
       }
     } catch (err) {
@@ -69,14 +71,15 @@ class user extends GetView<UserController> {
   }
 
   //UPDATE
-  Future updataUser(nickName, gender, birthday, age) async {
+  Future updataUser(nickName, gender, birthday, age, profileUrl) async {
     try {
       Map<String, dynamic> userData = {
         "email": "${controller.email.value}${controller.option.value}",
-        "nickname": "${nickName}",
-        "gender": "${gender}",
-        "birthday": "${birthday}",
+        "nickname": "$nickName",
+        "gender": "$gender",
+        "birthday": "$birthday",
         "age": age,
+        "profile_url": "$profileUrl",
         "rf_token": UserController.to.token.value,
       };
       print(userData);
@@ -101,6 +104,7 @@ class user extends GetView<UserController> {
   Future checkEmail() async {
     var response = await http.get(url +
         "/api/users/find-by-option?option=email&optionData=${controller.email.value}${controller.option.value}");
+    print(jsonDecode(response.body)["isdata"]);
     return jsonDecode(response.body)["isdata"] == 0 ? true : false;
   }
 
@@ -109,8 +113,7 @@ class user extends GetView<UserController> {
   Future checkNickName(nickName) async {
     try {
       var response = await http.get(
-        url +
-            "/api/users/find-by-option?option=nickname&optionData=${nickName}",
+        url + "/api/users/find-by-option?option=nickname&optionData=$nickName",
       );
       print("isdata nickname" + jsonDecode(response.body)["isdata"].toString());
       if (jsonDecode(response.body)["isdata"] == 0) {

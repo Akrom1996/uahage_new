@@ -111,7 +111,7 @@ class _UserModifyState extends State<UserModify> {
   Future deleteFile() async {
     try {
       await http.post(
-        url + "/api/s3/images-delete",
+        url + "/images-delete",
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           "Authorization": UserController.to.token.value
@@ -146,7 +146,7 @@ class _UserModifyState extends State<UserModify> {
     if (userdata["profile_url"] != "") {
       try {
         await http.post(
-          url + "/api/s3/images-delete",
+          url + "/images-delete",
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             "Authorization": UserController.to.token.value
@@ -168,14 +168,17 @@ class _UserModifyState extends State<UserModify> {
       var response;
       try {
         response = await dio.post(
-            url + '/api/s3/images/${UserController.to.userId.value}',
+            url + '/images/${UserController.to.userId.value}',
             data: formData);
+        print("$response");
+        print(response.data['location']);
         setState(() {
-          _uploadedFileURL = response.data["location"];
+          _uploadedFileURL = response.data['location'];
           userdata["profile_url"] = _uploadedFileURL;
         });
         print("Printing after upload imagelink " + userdata["profile_url"]);
         await _saveURL(userdata["profile_url"]);
+        return;
       } catch (err) {
         print(err);
       }
@@ -199,7 +202,6 @@ class _UserModifyState extends State<UserModify> {
 
   @override
   Widget build(BuildContext context) {
-    print(userdata);
     ScreenUtil.init(context, width: 1500, height: 2667);
     FocusScopeNode currentFocus = FocusScope.of(context);
 
@@ -651,20 +653,22 @@ class _UserModifyState extends State<UserModify> {
                                 userdata["baby_birthday"] != ""
                             ? () async {
                                 await uploadFile(_image);
-                                if (userdata["profile_url"] == "") {
-                                  print("imageLink");
-                                  await deleteFile();
-                                  await _saveURL("");
-                                }
+                                // if (userdata["profile_url"] == "") {
+                                //   await deleteFile();
+                                //   await _saveURL("");
+                                // }
+                                print("showdialog ${userdata["profile_url"]}");
                                 showDialog(
                                   barrierDismissible: false,
                                   context: context,
                                   builder: (context) => FutureBuilder(
                                     future: User.updataUser(
-                                        userdata["nickname"],
-                                        userdata['baby_gender'],
-                                        userdata["baby_birthday"],
-                                        userdata["age"]),
+                                      userdata["nickname"],
+                                      userdata['baby_gender'],
+                                      userdata["baby_birthday"],
+                                      userdata["age"],
+                                      userdata["profile_url"],
+                                    ),
                                     builder: (context, snapshot) {
                                       if (snapshot.hasData) {
                                         WidgetsBinding.instance

@@ -24,7 +24,7 @@ class Auth extends GetView<UserController> {
     );
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-
+      print(data);
       String token = data['data']['token'];
       String userId = data['data']['id'].toString();
       controller.setUserid(userId);
@@ -46,7 +46,7 @@ class Auth extends GetView<UserController> {
         ? {
             "email": "${controller.email.value}${controller.option.value}",
             "nickname": "${nickName}",
-            "gender": "${gender}",
+            "gender": "'${gender}'",
             "birthday": "${birthday}",
             "age": age,
             "URL": null,
@@ -64,7 +64,7 @@ class Auth extends GetView<UserController> {
 
     try {
       var response = await http.post(
-        url + "/api/auth/signup",
+        url + "/signup",
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -86,6 +86,7 @@ class Auth extends GetView<UserController> {
         return data["message"];
       } else {
         //  controller.errorstate(true);
+        print("sending error");
         return Future.error(jsonDecode(response.body)["message"]);
       }
     } catch (error) {

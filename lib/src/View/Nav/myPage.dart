@@ -104,7 +104,7 @@ class _MyPageState extends State<MyPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      child: userdata["nickname"] == ''
+                      child: userdata["nickname"] == ""
                           ? boldfont("우아하게", 70, Color(0xff3a3939))
                           : boldfont(
                               userdata["nickname"], 70, Color(0xff3a3939)),

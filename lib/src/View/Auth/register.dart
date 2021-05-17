@@ -423,7 +423,7 @@ class _RegisterState extends State<Register> {
                                     //  }
                                   });
                                 } else if (snapshot.hasError) {
-                                  dialog(context, snapshot);
+                                  dialog(context, snapshot.error);
                                 }
                                 return progress();
                               },

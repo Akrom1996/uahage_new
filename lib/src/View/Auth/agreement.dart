@@ -22,8 +22,10 @@ class _AgreementState extends State<Agreement> {
     setState(() {
       kakaoinstalled = installed;
     });
+    print("installed $kakaoinstalled");
   }
 
+  @override
   void initState() {
     initKakaoTalkInstalled();
     super.initState();
@@ -271,7 +273,7 @@ class _AgreementState extends State<Agreement> {
                     } else {
                       switch (UserController.to.option.value) {
                         case "kakao":
-                          if (kakaoinstalled == null)
+                          if (kakaoinstalled)
                             awaitdialog(login.loginWithTalk(), context, 200.h,
                                 200.w, 80.w, 100.w, 62.5.sp);
                           else {

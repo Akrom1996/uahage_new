@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uahage/src/Controller/user.controller.dart';
 import 'package:uahage/src/Service/auth.dart';
 import 'package:kakao_flutter_sdk/all.dart';
@@ -21,7 +22,7 @@ class SnsLogin extends GetView<UserController> {
       AccessTokenStore.instance.toStore(token);
       await kakaoGetEmail();
       var isAlreadyRegistered = await users.checkEmail();
-
+      print("is registered $isAlreadyRegistered");
       if (!isAlreadyRegistered) {
         await auth.signIn();
         Get.toNamed("/navigator");
