@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uahage/src/Static/Font/font.dart';
 import 'package:uahage/src/Static/Widget/appbar.dart';
 import 'package:get/get.dart';
@@ -50,6 +51,13 @@ class _HomeState extends State<Home> {
           body: SingleChildScrollView(
             child: Column(
               children: [
+                FlatButton(
+                    onPressed: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.clear();
+                    },
+                    child: Text("clear")),
                 Container(
                   width: 1500.w,
                   height: 900.h,

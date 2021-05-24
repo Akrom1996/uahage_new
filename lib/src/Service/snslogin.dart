@@ -18,8 +18,9 @@ class SnsLogin extends GetView<UserController> {
   issueAccessToken(String authCode) async {
     try {
       var token = await AuthApi.instance.issueAccessToken(authCode);
-      // print(token);
-      AccessTokenStore.instance.toStore(token);
+      var res = await AccessTokenStore.instance.toStore(token);
+      print(token);
+      print(res);
       await kakaoGetEmail();
       var isAlreadyRegistered = await users.checkEmail();
       print("is registered $isAlreadyRegistered");
