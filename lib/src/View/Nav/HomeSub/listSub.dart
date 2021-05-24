@@ -214,6 +214,7 @@ class ListSub extends GetView<PlaceController> {
                           Row(
                             children: [
                               RatingBar(
+                                onRatingUpdate: null,
                                 ignoreGestures: true,
                                 allowHalfRating: true,
                                 itemPadding: EdgeInsets.only(right: 12.w),
