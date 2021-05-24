@@ -1,10 +1,7 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:async';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uahage/src/Controller/bookmark.controller.dart';
 import 'package:uahage/src/Controller/user.controller.dart';
