@@ -24,6 +24,8 @@ class ListSub extends GetView<PlaceController> {
   int index = Get.arguments['index'];
 
   String url = URL;
+
+  //
   Bookmark bookmark = new Bookmark();
   var imagecolor = [
     "./assets/searchPage/image1.png",
