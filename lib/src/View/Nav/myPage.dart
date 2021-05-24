@@ -19,7 +19,15 @@ class _MyPageState extends State<MyPage> {
   Map userdata;
 
   void userSelect() async {
+    print("started");
     userdata = await User.select();
+    print("finished");
+  }
+
+  @override
+  void initState() {
+    userSelect();
+    super.initState();
   }
 
   var boy_image = [
@@ -33,7 +41,6 @@ class _MyPageState extends State<MyPage> {
 
   @override
   Widget build(BuildContext context) {
-    userSelect();
     ScreenUtil.init(context, width: 1500, height: 2667);
     return WillPopScope(
       onWillPop: () async => false,

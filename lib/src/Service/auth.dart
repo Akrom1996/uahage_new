@@ -13,10 +13,10 @@ class Auth extends GetView<UserController> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     Map<String, dynamic> userData = {
-      "email": "'${controller.email.value}${controller.option.value}'",
+      "email": "${controller.email.value}${controller.option.value}",
     };
     var response = await http.post(
-      url + "/api/auth/signin",
+      url + "/signin",
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
